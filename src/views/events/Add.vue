@@ -261,7 +261,7 @@ export default {
           this.isLoading(false);
           this.form = {};
           this.successToast();
-          this.$router.push({ path: "/events" });
+          this.$router.push({ name: "Event All" });
         })
         .catch((e) => {
           this.isLoading(false);

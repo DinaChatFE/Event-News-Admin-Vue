@@ -1,5 +1,5 @@
 <template>
-  <textarea :value="value" class="form-control"> </textarea>
+  <textarea v-model="value" class="form-control"></textarea>
 </template>
 
 <script>

@@ -119,7 +119,7 @@
               <TextEditor
                 @onChangeDescription="emitChangeDescription($event)"
                 :emitTitle="this.descriptionEmitTitle"
-                :value="this.form.description"
+                v-model="desc"
               ></TextEditor>
             </div>
           </div>
@@ -201,6 +201,7 @@ export default {
         categories: [],
         thumbnail: "",
       },
+      desc: '',
       modeOptions: ["Online", "Offline"], //or [{id: key, text: value}, {id: key, text: value}]
       modeEmitTitle: "onChangeMode",
       descriptionEmitTitle: "onChangeDescription",
@@ -221,6 +222,10 @@ export default {
   },
   watch: {
     // form: function
+    desc: function(val){
+      this.desc = val
+      console.log(this.desc);
+    }
   },
   methods: {
     ...mapMutations({
@@ -266,6 +271,7 @@ export default {
           this.form.start_date = response.data.start_date;
           this.form.end_date = response.data.end_date;
           this.form.thumbnail = response.data.thumbnail
+          this.desc = response.data.description
         })
         .catch((e) => {
           console.log(e);
