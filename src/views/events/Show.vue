@@ -81,8 +81,9 @@
             <td>
               <a
                 class="btn btn-light"
+                :class="member.check_in ? 'disabled' : ''"
                 @click="checkInMember(data.id, member.id)"
-                >Check</a
+                >{{ member.check_in ? 'Checked': 'Check'}}</a
               >
             </td>
           </tr>

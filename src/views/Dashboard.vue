@@ -12,9 +12,9 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="callout callout-info">
-                    <small class="text-muted">New Clients</small>
+                    <small class="text-muted">Users</small>
                     <br />
-                    <strong class="h4">9,123</strong>
+                    <strong class="h4">{{ data.member }}</strong>
                     <div class="chart-wrapper">
                       <canvas
                         id="sparkline-chart-1"
@@ -27,9 +27,9 @@
                 <!--/.col-->
                 <div class="col-sm-6">
                   <div class="callout callout-danger">
-                    <small class="text-muted">Recuring Clients</small>
+                    <small class="text-muted">Events</small>
                     <br />
-                    <strong class="h4">22,643</strong>
+                    <strong class="h4">{{data?.event}}</strong>
                     <div class="chart-wrapper">
                       <canvas
                         id="sparkline-chart-2"
@@ -39,6 +39,7 @@
                     </div>
                   </div>
                 </div>
+                
                 <!--/.col-->
               </div>
               <!--/.row-->
@@ -232,9 +233,9 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="callout callout-warning">
-                    <small class="text-muted">Pageviews</small>
+                    <small class="text-muted">News</small>
                     <br />
-                    <strong class="h4">78,623</strong>
+                    <strong class="h4">{{data?.news}}</strong>
                     <div class="chart-wrapper">
                       <canvas
                         id="sparkline-chart-3"
@@ -569,15 +570,30 @@
 <script>
 import { mapMutations } from "vuex";
 import { BREADCRUMB } from "@/store/storeconstants";
+import EventDataService from "@/services/EventDataService";
+
 export default {
+  data() {
+    return {
+      data: {},
+    };
+  },
   created() {
     document.title = "Dashboard";
     this.breadcrumb("Dashboard");
+    this.getDashboard();
   },
   methods: {
     ...mapMutations({
       breadcrumb: BREADCRUMB,
     }),
+    getDashboard() {
+      EventDataService.getDashboard().then((res) => {
+        console.log(res);
+        // console.log(res);
+        this.data = res.data;
+      });
+    },
   },
 };
 </script>

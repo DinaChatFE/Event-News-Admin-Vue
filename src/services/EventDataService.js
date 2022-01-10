@@ -14,6 +14,9 @@ class EventDataService {
     create(data) {
         return axiosInstance.post(BASE_URL + "event", data);
     }
+    getDashboard(){
+        return axiosInstance.get(BASE_URL + 'event/dashboard/all');
+    }
     update(id, data) {
         return axiosInstance.put(BASE_URL + `event/${id}`, data);
     }
