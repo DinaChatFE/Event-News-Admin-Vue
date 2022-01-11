@@ -8,6 +8,12 @@
     <div class="card">
       <div class="card-body login-card-body">
         <p style="text-align: center">Sign in to start your session</p>
+        <p
+          v-if="this.unauthentication"
+          style="color: red; text-align: center; font-size: 14px"
+        >
+          {{ this.unauthentication }}
+        </p>
         <form @submit.prevent="onLogin()">
           <label>Email</label>
           <div class="input-group">
@@ -59,11 +65,11 @@
               </button>
             </div>
             <div class="col-12" style="text-align: center; padding-top: 10px">
-              <router-link :to="'/sign-up'">
+              <!-- <router-link :to="'/sign-up'">
                 <p style="font-size: 14px; color: black">
                   Don't have an account register here.
                 </p>
-              </router-link>
+              </router-link> -->
             </div>
           </div>
         </form>
@@ -82,6 +88,7 @@ export default {
       password: "12345678",
       errors: [],
       isDisable: false,
+      unauthentication: "",
     };
   },
   created() {
@@ -109,7 +116,8 @@ export default {
       }).catch((error) => {
         this.isLoading(false);
         this.isDisable = false;
-        console.log(error);
+        this.unauthentication = error.data.detail;
+        console.log(error.data.detail);
       });
       this.isLoading(false);
       this.isDisable = false;

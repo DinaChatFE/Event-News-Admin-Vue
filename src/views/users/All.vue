@@ -14,10 +14,10 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Phone</th>
-                <th>Role</th>
-
                 <th>Email</th>
                 <th>Date of Birth</th>
+                <th>Role</th>
+                <!-- <th>Action</th> -->
               </tr>
             </thead>
             <tbody>
@@ -39,9 +39,20 @@
                 <td>{{ list.first_name }}</td>
                 <td>{{ list.last_name }}</td>
                 <td>{{ list.phone_number }}</td>
-                <td>{{ list.role }}</td>
                 <td>{{ list.email }}</td>
                 <td>{{ list.date_of_birth }}</td>
+                <td>{{ list.role }}</td>
+                <!-- <td>
+                  <router-link
+                    :to="{
+                      name: 'Edit User',
+                      params: { id: list.id },
+                    }"
+                    class="text-info mr-2"
+                  >
+                    <i class="fa fa-edit"></i>
+                  </router-link>
+                </td> -->
               </tr>
             </tbody>
           </table>

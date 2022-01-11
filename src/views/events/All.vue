@@ -53,7 +53,7 @@
                   </router-link>
                   <router-link
                     :to="{
-                      name: 'edit-event',
+                      name: 'Edit Event',
                       params: { event_id: list.id },
                       query: {
                         mode: list.mode,
@@ -84,7 +84,7 @@
 import { mapMutations } from "vuex";
 import EventDataService from "@/services/EventDataService";
 import { LOADING_SPINNER_MUTATION, BREADCRUMB } from "@/store/storeconstants";
-import { createToast } from 'mosha-vue-toastify';
+import { createToast } from "mosha-vue-toastify";
 import "mosha-vue-toastify/dist/style.css";
 
 export default {

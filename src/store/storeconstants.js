@@ -5,6 +5,7 @@ export const LOGIN_ACTION = '[actions] login user';
 export const LOGOUT_ACTION = '[actions] logout user';
 export const SET_AUTO_LOGOUT_MUTATION = '[mutations] auto logout user';
 export const SET_USR_TOKEN_DATA_MUTATION = '[mutations] set user token data';
+export const AUTHPROFILE = '[mutations] auth profile';
 export const LOADING_SPINNER_MUTATION = '[mutations] loading spinner';
 export const SIDEBAR_HIDDEN_MUTATION = '[mutations] sidebar hidden';
 export const DISABLE_SUBMIT_BUTTON = '[mutations] disable submit button';

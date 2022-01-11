@@ -6,9 +6,7 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">
-      Event News
-    </a>
+    <a class="navbar-brand" href="#"> Event News </a>
     <button
       class="navbar-toggler sidebar-toggler d-md-down-none"
       type="button"
@@ -38,17 +36,21 @@
           aria-expanded="false"
         >
           <img
-            src="img/avatars/6.jpg"
+            v-bind:src="
+              profile
+                ? 'http://127.0.0.1:8000/static/images/' + profile
+                : 'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png'
+            "
             class="img-avatar"
-            alt="admin@bootstrapmaster.com"
+            alt=""
           />
         </a>
         <div class="dropdown-menu dropdown-menu-right">
           <div class="dropdown-header text-center">
             <strong>Account</strong>
           </div>
-          <a class="dropdown-item" href="#"
-            ><i class="fa fa-user"></i> Profile</a
+          <router-link :to="'/profile'" class="dropdown-item"
+            ><i class="fa fa-user"></i> Profile</router-link
           >
           <a class="dropdown-item" href="#" @click="onLogout()"
             ><i class="fa fa-lock"></i> Logout</a
@@ -63,11 +65,12 @@
 </template>
 
 <script>
-import { mapActions, mapGetters, mapMutations } from "vuex";
+import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 import {
   IS_USER_AUTHENTICATED_GETTER,
   LOGOUT_ACTION,
   SIDEBAR_HIDDEN_MUTATION,
+  AUTHPROFILE,
 } from "@/store/storeconstants";
 export default {
   name: "SideBar",
@@ -76,7 +79,16 @@ export default {
       sidebarHidden: false,
     };
   },
+  created() {
+    let authData = localStorage.getItem("authData");
+    if (authData) {
+      this.authProfile(JSON.parse(authData).profile);
+    }
+  },
   computed: {
+    ...mapState({
+      profile: (state) => state.authProfile,
+    }),
     ...mapGetters("auth", {
       isAuthenticated: IS_USER_AUTHENTICATED_GETTER,
     }),
@@ -87,6 +99,7 @@ export default {
     }),
     ...mapMutations({
       sidebarHiddenMutation: SIDEBAR_HIDDEN_MUTATION,
+      authProfile: AUTHPROFILE,
     }),
     sidebarToggler() {
       this.sidebarHidden = !this.sidebarHidden;

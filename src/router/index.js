@@ -22,9 +22,27 @@ const routes = [
     }
   },
   {
+    path: '/profile',
+    name: 'User Profile',
+    component: () => import('@/views/users/Profile.vue'),
+    meta: {
+      auth: true,
+      layout: "LayoutAdmin",
+    }
+  },
+  {
     path: '/create-user',
     name: 'Create User',
     component: () => import('@/views/users/Add.vue'),
+    meta: {
+      auth: true,
+      layout: "LayoutAdmin",
+    }
+  },
+  {
+    path: '/user/:id',
+    name: 'Edit User',
+    component: () => import('@/views/users/Edit.vue'),
     meta: {
       auth: true,
       layout: "LayoutAdmin",
@@ -50,7 +68,7 @@ const routes = [
   },
   {
     path: '/event/:event_id',
-    name: 'edit-event',
+    name: 'Edit Event',
     component: () => import('@/views/events/Edit.vue'),
     meta: {
       auth: true,

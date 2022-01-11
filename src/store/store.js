@@ -1,6 +1,6 @@
 import { createStore } from "vuex";
 import auth from "./modules/auth/index";
-import { BREADCRUMB, LOADING_SPINNER_MUTATION, SIDEBAR_HIDDEN_MUTATION } from "./storeconstants";
+import { AUTHPROFILE, BREADCRUMB, LOADING_SPINNER_MUTATION, SIDEBAR_HIDDEN_MUTATION } from "./storeconstants";
 
 const store = createStore({
     modules: {
@@ -10,7 +10,8 @@ const store = createStore({
         return {
             isLoading: false,
             sidebarHidden: false,
-            breadcrumb: ''
+            breadcrumb: '',
+            authProfile: ''
         };
     },
     mutations: {
@@ -22,6 +23,9 @@ const store = createStore({
         },
         [BREADCRUMB](state, payload) {
             state.breadcrumb = payload;
+        },
+        [AUTHPROFILE](state, payload) {
+            state.authProfile = payload;
         }
     }
 })

@@ -42,8 +42,10 @@ export default {
                 //     context.dispatch(AUTO_LOGOUT_ACTION);
                 // }, (response.data.expires_in * 1000));
 
+                console.log(response);
                 let authData = {
                     token: response.data.token,
+                    profile: response.data.user.profile
                     // refreshToken: response.data.refresh_token,
                     // expiresIn: response.data.expires_in,
                 };
